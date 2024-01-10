@@ -2,7 +2,7 @@
 
  #Setup
   - 1. Clone the Repository
-  - 2. Create Virtual Environment 
+  - 2. Create Virtual Environment (Optional)
         
         python -m venv venv
 
