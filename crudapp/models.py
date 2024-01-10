@@ -1,24 +1,36 @@
-from django.db import models
+
 
 # Create your models here.
 from django.db import models
 
+
+class Videogame(models.Model):
+    id = models.IntegerField(primary_key=True)
+    title = models.CharField(max_length=255)  # Add the missing title field
+
+    def __str__(self):
+        return self.title
+
 class Gamer (models.Model):
     name = models.CharField(max_length=100, verbose_name="Name")
-    email = models.EmailField(max_length=277, verbose_name="Email")
+    username = models.CharField(max_length=15, verbose_name="Username")
+    password = models.CharField(max_length=27, verbose_name="Password")
     age = models.IntegerField(max_length=3, verbose_name="Age")
     email = models.EmailField(max_length=277, verbose_name="Email")
     nationality= models.CharField(max_length=100, verbose_name="Nationality")
-    like= models.IntegerField(max_length=100000, verbose_name="Like")
-    dislike= models.IntegerField(max_length=100000, verbose_name="Dislike")
-    playlist= models.CharField(max_length=100000, verbose_name="Playlist")
-    wishlist= models.CharField(max_length=100000, verbose_name="Wishlist")
+    like= models.ManyToManyField(Videogame, related_name='users_like', blank=True)
+    playlist= models.ManyToManyField(Videogame, related_name='users_playlist', blank=True)
+    wishlist= models.ManyToManyField(Videogame, related_name='users_wishlist', blank=True)
     
-    
+# models.py
+
+
+
+
+
     
 
 
     
 
-    def __str__(self):
-        return str(self.id)
+
